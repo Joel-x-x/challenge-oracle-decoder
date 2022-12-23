@@ -4,6 +4,8 @@
 :root {
   --blanco: #fff;
   --dark-blue-300: #0A3871;
+  --dark-blue-400: #072B61;
+  --gray-300: #868E96;
   --gray-400: #495057;
   --gray-500: #343A40;
   --light-blue-100: #F3F5FC;
@@ -27,6 +29,12 @@ body {
 
 body {
   background-color: var(--light-blue-100);
+}
+
+footer {
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
 }
 
 textarea {
@@ -131,10 +139,10 @@ textarea:focus-visible {
 }
 
 .contenedor-alerta {
-  font-size: .6rem;
+  font-size: .7rem;
   color: var(--gray-400);
   display: flex;
-  width: 12rem;
+  width: 14rem;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
@@ -155,6 +163,7 @@ textarea:focus-visible {
   padding: 1rem 5rem;
   border-radius: 1rem;
   cursor:pointer;
+  transition: all .5s ease;
 }
 
 .boton-encriptar {
@@ -162,12 +171,26 @@ textarea:focus-visible {
   color: var(--light-gray);
   margin-right: 2rem;
   border: none;
+  border: solid .5px transparent;
 }
+
 
 .boton-desencriptar {
   background-color: var(--light-gray);
   color: var(--dark-blue-300);
   border: solid .5px var(--dark-blue-300);
+}
+
+.boton-encriptar:hover {
+  color: var(--dark-blue-300);
+  border: solid .5px var(--dark-blue-300);
+  background-color: var(--light-gray);
+}
+
+.boton-desencriptar:hover {
+  background-color: var(--dark-blue-300);
+  color: var(--light-gray);
+  border: none;
 }
 
 @media only screen and (max-width: 580px) {
@@ -294,5 +317,12 @@ textarea:focus-visible {
 
 .mensaje-copiado {
   text-align: center;
+  margin: 0;
+}
+
+.texto-footer {
+  font-size: .7rem;
+  text-align: end;
+  margin-right: 1rem;
   margin: 0;
 }
