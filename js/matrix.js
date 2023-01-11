@@ -6,7 +6,7 @@ let ultimoInput = ""
 
 
 // Variables Globales
-const contenedorInputs = []
+// const contenedorInputs = []
 let contador = 0
 
 // Eventos
@@ -46,7 +46,7 @@ function crearInput(tipo, mensaje) {
   contenedorComandos.appendChild(div)
 
   // Ingresar elemnto al array
-  contenedorInputs.push(input)
+  // contenedorInputs.push(input)
 
   contador++
 
@@ -68,15 +68,18 @@ function ejecutarComando(e) {
 
 
 function leerComando(comando, id) {
+  let deshabilitar = true
+
   switch (comando) {
     case "help":
       commandHelp()
       break;
-    case "":
-
+    case "clear":
+      commandClear()
+      deshabilitar = false
       break;
-    case "":
-
+    case "return":
+      commandReturn()
       break;
     case "":
 
@@ -96,7 +99,8 @@ function leerComando(comando, id) {
       break;
   }
   // Deshabilitamos el comando anterior después de la ejecución
-  deshabilitarComandoAnterior(id)
+
+  deshabilitar ? deshabilitarComandoAnterior(id): ""
 }
 
 function deshabilitarComandoAnterior(id) {
@@ -125,8 +129,55 @@ function commandHelp() {
   crearInput("command")
 }
 
+function commandClear() {
+  while(contenedorComandos.length > 1) {
+    contenedorComandos.removeChild(contenedorComandos.children[1])
+  }
+  // Como llamam la funcion deshabilitar no ejecuta la funcion eventoInput
+  crearInput("command")
+  // Focus y agrega evento al input
+  eventoInput()
+}
+
+function commandReturn() {
+  // Pantalla desplegable de adios
+  window.location = "index.html"
+}
+
 
 // Otras Funciones
+
+function mensajeDespegable(titulo, mensaje) {
+  const div = document.createElement('div')
+  const div2 = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const div3 = document.createElement('div')
+  const p = document.createElement('p')
+
+  div.classList.add('contenedor-mensaje')
+  div.id = "contenedor-mensaje"
+
+  div2.classList.add('contenedor-titulo-mensaje')
+  h2.classList.add('titulo-mensaje')
+  h2.id = 'titulo-mensaje'
+  h2.textContent = titulo
+
+  div3.classList.add('contenedor-texto-mensaje')
+  p.classList.add('texto-mensaje')
+  p.textContent = mensaje
+
+  div3.appendChild(p)
+  div2.appendChild(h2)
+  div.appendChild(div2)
+  div.appendChild(div3)
+
+  document.querySelector('main').appendChild(div)
+
+  setTimeout(() => {
+    div.remove()
+  }, 2000);
+}
+
 
 // Mostramos la pantalla principal una vez termine la animación del fondo
 function mostrarPantalla() {

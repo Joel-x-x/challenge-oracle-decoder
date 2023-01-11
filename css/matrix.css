@@ -3,6 +3,7 @@
 :root {
   --verde-ocuro: #3DE2B8;
   --verde-claro: #7AF9C6;
+  --fondo-osucro: rgba(0, 0, 0, 0.75);
 }
 
 *,
@@ -26,6 +27,7 @@ body {
 
 main {
   padding-top: 5rem;
+  position: relative;
 }
 
 h2 {
@@ -61,12 +63,17 @@ input:focus-visible {
 
 /* Pantalla principal */
 .pantalla-principal {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: var(--fondo-osucro);
   width: 700px;
   height: 500px;
   margin: auto;
   color: var(--verde-ocuro);
   border: 2px solid var(--verde-claro);
+  overflow: scroll;
+}
+
+.pantalla-principal::-webkit-scrollbar {
+  display: none;
 }
 
 .contenedor-titulo-principal {
@@ -78,6 +85,8 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  width: 696px;
 }
 
 .titulo-principal {
@@ -107,3 +116,31 @@ input:focus-visible {
   padding-top: 2px;
 }
 
+
+/* Mensaje emergente */
+.contenedor-mensaje {
+  border: 2px solid var(--verde-ocuro);
+  color: var(--verde-ocuro);
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: absolute;
+  top: 75%;
+  right: 15%;
+  height: 100px;
+  background-color: var(--fondo-osucro);
+  text-align: center;
+}
+
+.contenedor-titulo-mensaje {
+  background-color: var(--verde-claro);
+  color: #000;
+  padding: 0 1rem;
+}
+
+.titulo-mensaje {
+  font-size: 1.5rem;
+}
+
+.contenedor-texto-mensaje {
+  padding: 1rem;
+}

@@ -332,6 +332,43 @@ textarea:focus-visible {
   }
 }
 
+/* Efecto tomado de: https://codepen.io/sestalayos/pen/mWeRPp */
+.version-personalizada:hover{
+  transform: translateY(-6px);
+  transition-duration: 0.3s;
+  animation: 1.5s mover-caja infinite;
+}
+.version-personalizada:before{
+  content: '';
+  background: radial-gradient(ellipse, 
+    rgba(7, 95, 76, 0.35) 0%, 
+    rgba(10, 103, 89, 0) 80%);
+  width: 90%;
+  height: 20px;
+  top: 100%;
+  left: 5%;
+  position: absolute;
+  opacity: 0;
+}
+.version-personalizada:hover:before{
+  opacity: 1;
+  transform: translateY(6px);
+  transition-duration: 0.3s;
+  animation: 1.5s mover-sombra infinite;
+}
+
+@keyframes mover-caja{ 
+  50%{ 
+    transform: translateY(-10px);
+  } 
+}
+@keyframes mover-sombra{
+  50%{
+    opacity: 1;
+    transform: translateY(10px) scale(0.9)
+  }
+}
+
 .red-social {
   flex: 1;
   cursor: pointer;
