@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Encoder</title>
+  <title>Encrypter</title>
   <link rel="stylesheet" href="css/matrix.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
         <h2 class="titulo-principal">[User]</h2>
       </div>
       <form class="contenedor-comandos" id="contenedor-comandos">
-        <input class="input-bienvenida" id="input-bienvenida" type="text" disabled value="* Welcome to Encoder / Decoder * Use the command help">
+        <input class="input-bienvenida" id="input-bienvenida" type="text" disabled value="* Welcome to Encrypter / Decrypter * Use the command help">
 
         <!-- <div class="command">
           <span>></span>
@@ -31,6 +31,14 @@
           <p class="texto-mensaje">ONLY LOWERCASE AND WITHOUT ACCENTS.</p>
         </div>
       </div> -->
+      <div class="pantalla-secundaria ocultar" id="pantalla-secundaria">
+        <div class="contenedor-titulo-secundaria">
+          <h2 class="titulo-secundaria" id="titulo-secundaria">[Encrypting...]</h2>
+        </div>
+        <form class="contenedor-texto" id="contenedor-texto">
+          <textarea class="output-texto" id="output-texto" cols="30" rows="10" disabled></textarea>
+          </form>
+        </div>
   </main>
 
   <script src="js/fondo.js"></script>
