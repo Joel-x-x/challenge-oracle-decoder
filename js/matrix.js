@@ -28,10 +28,12 @@ function crearInput(tipo, mensaje) {
   div.classList.add(tipo)
 
   input.type = "text"
+  input.spellcheck = false
 
   // Asigar elemento segun el tipo linea de comando
   if (tipo === "command") {
     span.textContent = "> "
+    input.spellcheck = false
   } else if (tipo === "info") {
     span.textContent = ""
     input.setAttribute("disabled", "")
@@ -63,13 +65,12 @@ function ejecutarComando(e) {
     const comandoFormateado = e.target.value.trim()
     const comandoId = e.target.id
 
-    if(e.target.parentElement.classList.contains('command')) {
+    if (e.target.parentElement.classList.contains('command')) {
       // Lee el comando y entra a un switch comandos
       leerCommand(comandoFormateado, comandoId)
-    }
-    else if(e.target.parentElement.classList.contains('input')) {
+    } else if (e.target.parentElement.classList.contains('input')) {
       // Lee el comando y entra a un switch comandos inputs
-      leerInput(comandoFormateado, comandoId)
+      leerInput(comandoId)
     }
   }
 }
@@ -80,24 +81,22 @@ function ejecutarInput(e) {
   // const comandoId = e.target.id
 
   // Validar mayusculas y sin acentos y formateamos el texto con la función
-  if(comandoFormateado !== "") {
+  if (comandoFormateado !== "") {
     comandoFormateado = validacionMayusculasAcentos(comandoFormateado)
   }
 
   // Si esta hay texto mostramos la pantalla sec sino la ocultamos
-  if(comandoFormateado === "") {
+  if (comandoFormateado === "") {
     pantallaSecundaria("ocultar")
-  } 
-  else {
+  } else {
     pantallaSecundaria("mostrar")
   }
 
   // Encripta o desencripta en base al comando ejecutado
-  if(tipoProceso === 'encriptar') {
-    encriptando("[Encrypting...]",encriptar(comandoFormateado))
-  }
-  else if(tipoProceso === 'desencriptar') {
-    desencriptando("[Decrypting...]",desencriptar(comandoFormateado))
+  if (tipoProceso === 'encriptar') {
+    encriptando("[Encrypting...]", encriptar(comandoFormateado))
+  } else if (tipoProceso === 'desencriptar') {
+    desencriptando("[Decrypting...]", desencriptar(comandoFormateado))
   }
 }
 
@@ -122,34 +121,27 @@ function leerCommand(comando, id) {
     case "decrypter":
       commandDecrypter()
       break;
+    case "copy":
+      commandCopy()
+      break;
     default:
       commandUnknown()
       break;
   }
   // Deshabilitamos el comando anterior después de la ejecución
 
-  deshabilitar ? deshabilitarComandoAnterior(id,"keydown"): ""
+  deshabilitar ? deshabilitarComandoAnterior(id, "keydown") : ""
 }
 
 // Leer el comando en caso de comando tipo input #
-function leerInput(comando, id) {
-  let deshabilitar = true
-
-  switch (comando) {
-    case "copy":
-      break;
-    case "exit":
-      break;
-    default:
-      // commandUnknown()
-      break;
-  }
+function leerInput(id) {
+  
+  commandInputEnter()
   // Deshabilitamos el comando anterior después de la ejecución
-
-  // deshabilitar ? deshabilitarComandoAnterior(id, "keydown"): ""
+   deshabilitarComandoAnterior(id, "keydown")
 }
 
-function deshabilitarComandoAnterior(id,evento) {
+function deshabilitarComandoAnterior(id, evento) {
   const elemento = document.getElementById(id)
 
   elemento.setAttribute('disabled', '')
@@ -165,18 +157,17 @@ function commandUnknown() {
 }
 
 function commandHelp() {
+  crearInput("info", "help -> show all commands")
   crearInput("info", "encrypter -> open encrypter")
   crearInput("info", "decrypter -> open decrypter")
   crearInput("info", "clear -> clear console")
-  crearInput("info", "copy -> copy message")
-  crearInput("info", "exit -> exit to the command")
+  crearInput("info", "copy -> copy last message encrypted/decrypted")
   crearInput("info", "return -> switch to the normal version")
-  crearInput("info", "help -> show all commands")
   crearInput("command")
 }
 
 function commandClear() {
-  while(contenedorComandos.length > 1) {
+  while (contenedorComandos.length > 1) {
     contenedorComandos.removeChild(contenedorComandos.children[1])
   }
   // Como llamam la funcion deshabilitar no ejecuta la funcion agregarEventoInput
@@ -186,7 +177,7 @@ function commandClear() {
 }
 
 function commandReturn() {
-  mensajeDespegable("[ I ]" , "ヾ(￣▽￣) Bye~Bye~")
+  mensajeDespegable("[ I ]", "ヾ(￣▽￣) Bye~Bye~")
   window.location = "index.html"
 }
 
@@ -206,7 +197,35 @@ function commandDecrypter() {
   tipoProceso = 'desencriptar'
 }
 
+function commandCopy() {
+  if(ultimaEncriptacion === "") {
+    crearInput("info","Has not yet encrypted anything")
+    crearInput("command")
+  } else {
+    copiar()
+    crearInput("info","Successfully copied!")
+    crearInput("command")
+  }
+}
+
+// Command Input
+function commandInputEnter() {
+  crearInput('command')
+  pantallaSecundaria("ocultar")
+}
+
+
 // Otras Funciones
+
+// Copiar ultimo mensaje encryptado/desencriptado
+function copiar() {
+  navigator.clipboard.writeText(ultimaEncriptacion).then(() => {
+    // Copiado correctamente
+  }, () => {
+    // A surgido un error
+    mensajeDespegable("[INFO]", "Copy error!")
+  });
+}
 
 // Mostramos el texto encriptado o desencriptado en pantalla segun siga escribiendo
 function encriptando(titulo, texto) {
@@ -218,7 +237,8 @@ function encriptando(titulo, texto) {
 
   ultimaEncriptacion = texto
 }
-function desencriptando(titulo,texto) {
+
+function desencriptando(titulo, texto) {
   const tituloSecundaria = document.getElementById('titulo-secundaria')
   const outputTexto = document.getElementById('output-texto')
 
@@ -288,7 +308,7 @@ function desencriptar(texto) {
 function validacionMayusculasAcentos(texto) {
   const reNombres = /^[a-z\s]+$/i
   const validacion = texto.match(reNombres)
-  const textoConvertido = removeAccents(texto.toLowerCase())
+  const textoConvertido = removerAcentos(texto.toLowerCase())
 
   if (validacion === null || textoConvertido !== texto) {
     mensajeDespegable("[WARNING]", "'ONLY LOWERCASE AND NO ACCENTS!'")
@@ -297,9 +317,9 @@ function validacionMayusculasAcentos(texto) {
   return textoConvertido
 }
 
-function removeAccents(str){
+function removerAcentos(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-} 
+}
 
 function mensajeDespegable(titulo, mensaje) {
   const div = document.createElement('div')
@@ -335,10 +355,9 @@ function mensajeDespegable(titulo, mensaje) {
 function pantallaSecundaria(accion) {
   const pantallaSecundaria = document.getElementById('pantalla-secundaria')
 
-  if(accion === "mostrar") {
+  if (accion === "mostrar") {
     pantallaSecundaria.classList.remove('ocultar')
-  }
-  else {
+  } else {
     pantallaSecundaria.classList.add('ocultar')
   }
 }
@@ -374,10 +393,9 @@ function agregarEventoInput(evento) {
   // Focus al elemento input
   ultimoInput.children[1].focus()
   // Agregamos el evento keydown al input
-  if(evento === "keydown") {
+  if (evento === "keydown") {
     ultimoInput.addEventListener(evento, ejecutarComando)
-  }
-  else if(evento === "input") {
+  } else if (evento === "input") {
     ultimoInput.addEventListener(evento, ejecutarInput)
   }
-} 
+}
