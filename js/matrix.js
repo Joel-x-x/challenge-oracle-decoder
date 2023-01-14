@@ -97,6 +97,7 @@ function ejecutarInput(e) {
     encriptando("[Encrypting...]", encriptar(comandoFormateado))
   } else if (tipoProceso === 'desencriptar') {
     desencriptando("[Decrypting...]", desencriptar(comandoFormateado))
+    // ( ﾉ ﾟｰﾟ)ﾉ I
   }
 }
 

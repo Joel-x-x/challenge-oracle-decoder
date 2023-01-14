@@ -36,6 +36,12 @@ footer {
   right: .5rem;
 }
 
+@media only screen and (max-width: 580px) {
+  footer {
+    position: initial;
+  }
+}
+
 textarea {
   border: none;
   resize: none;
@@ -215,10 +221,10 @@ textarea:focus-visible {
 
 @media only screen and (max-width: 1100px) {
   .textarea-salida {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 100%;
     height: 10rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -252,6 +258,10 @@ textarea:focus-visible {
     top: 50%;
     transform: translate(0, -50%);
   }
+
+  .texto-1 {
+    font-size: 1rem;
+  }
 }
 
 .texto-1 {
@@ -263,6 +273,15 @@ textarea:focus-visible {
 .texto-2 {
   color: var(--gray-400);
   text-align: center;
+}
+
+@media only screen and (max-width: 1100px) {
+  .texto-1 {
+    font-size: 1rem;
+  }
+  .texto-2 {
+    font-size: .8rem;
+  }
 }
 
 .boton-copiar {
