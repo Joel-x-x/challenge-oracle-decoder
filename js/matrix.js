@@ -14,8 +14,7 @@ let tipoProceso = ""
 let ultimaEncriptacion = ""
 // Eventos
 document.addEventListener('DOMContentLoaded', mostrarPantalla)
-
-
+window.addEventListener('resize', VolverVersionNormal)
 
 
 // Funciones
@@ -367,6 +366,8 @@ function pantallaSecundaria(accion) {
 function mostrarPantalla() {
   const pantallaPrincipal = document.getElementById('pantalla-principal')
 
+  // Versión personalizada no es posible usarla en celualar
+  VolverVersionNormal()
 
   pantallaPrincipal.style.setProperty("visibility", "hidden")
 
@@ -399,4 +400,12 @@ function agregarEventoInput(evento) {
   } else if (evento === "input") {
     ultimoInput.addEventListener(evento, ejecutarInput)
   }
+}
+
+// La versión personalizada no es posible usarla en celular
+function VolverVersionNormal() {
+  if (window.innerWidth <= 1100) {
+    window.location = "index.html"
+  }
+
 }
