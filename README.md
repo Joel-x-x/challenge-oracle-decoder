@@ -20,7 +20,8 @@ el cual te mostrara la lista de comando y lo que hace cada uno.
 
 ## Diseño Alura 
 Temática original propuesta por Alura Latam
-#### Para ingresar a la versión matrix dar clic al siguiente boton: <img width="40" src="https://user-images.githubusercontent.com/88243109/212486223-3bd906aa-31ba-4795-b90c-2dcd2c27322c.svg">
+#### Para ingresar a la versión matrix dar clic al siguiente boton:
+<img width="40" src="https://user-images.githubusercontent.com/88243109/212486223-3bd906aa-31ba-4795-b90c-2dcd2c27322c.svg">
 <p align="center" >
      <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/212481510-ebe001d0-5c41-4339-99f0-d37e30ea2246.png">
      <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/212485627-603228bb-412d-46eb-8f1f-b907b26fa48d.png">
