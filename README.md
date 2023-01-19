@@ -14,7 +14,8 @@ Realizado con un temática de matrix simula una consola de comandos mediante los
 el cual te mostrara la lista de comando y lo que hace cada uno.
 <p align="center" >
      <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/212485581-8fe466cc-ba25-4b5b-a5cd-a1559940f8a9.png">
-     <img width="500" heigth="300" src="Diseño Matrix.png">
+     <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/213520749-233e50a6-d89a-47da-9e0e-928ed5005a6c.png">
+
 </p>
 
 ## Diseño Alura 
