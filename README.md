@@ -6,7 +6,7 @@ un desencriptador que nos permita descrifrar el mismo mensaje.
 <p align="left" >
      <img width="100" heigth="50" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
      <img width="90" heigth="50" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-     <img width="147" heigth="50" src="Diseño Matrix.png">
+     <img width="147" heigth="50" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 </p>
 
 ## Diseño Matrix 
@@ -14,7 +14,7 @@ Realizado con un temática de matrix simula una consola de comandos mediante los
 el cual te mostrara la lista de comando y lo que hace cada uno.
 <p align="center" >
      <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/212485581-8fe466cc-ba25-4b5b-a5cd-a1559940f8a9.png">
-     <img width="500" heigth="300" src="https://user-images.githubusercontent.com/88243109/212485590-c5a3dac2-51dc-4208-99b3-68da4f72a009.png">
+     <img width="500" heigth="300" src="Diseño Matrix.png">
 </p>
 
 ## Diseño Alura 
